@@ -1,0 +1,24 @@
+body {
+  background-color: #f8f9fa;
+}
+footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+footer p {
+  margin: 0;
+}
+.offcanvas-body a {
+  font-size: 1.1rem;
+  padding: 10px 0;
+  display: block;
+}
+.link-hover {
+  text-decoration: none;
+}
+.link-hover:hover {
+  color: #7ed7dd !important;
+  transition: 0.2s ease;
+}

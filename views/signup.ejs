@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign Up - Death Literacy Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        /* Your exact CSS from the original page */
+        body {
+            font-family: "Poppins", "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #6243FF 0%, #9F79FF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 2.5em;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #FF5757, #FFB457, #FFFF70, #70FF91, #57A5FF, #B557FF);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.2em;
+            color: #4907e2;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin: 0.5em 0 0.2em;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.8em 1em;
+            margin-bottom: 1.2em;
+            border: 2px solid #e0e0ff;
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background-color: #f9f9ff;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #4907e2;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(73, 7, 226, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.9em;
+            background: linear-gradient(90deg, #4907e2, #7142ff);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(73, 7, 226, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #3f00cd, #5f30f0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(73, 7, 226, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .link {
+            margin-top: 1.5em;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .link a {
+            color: #4907e2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes colorPulse {
+            0% { box-shadow: 0 0 0 0 rgba(73, 7, 226, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(73, 7, 226, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(73, 7, 226, 0); }
+        }
+
+        button:focus {
+            animation: colorPulse 1.5s infinite;
+        }
+        /* Message styles */
+        .message {
+            padding: 0.8em;
+            margin-bottom: 1em;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div>
+       <img src="images/logo.png" alt="logo" style="height: 550px;">
+    </div>
+    <div class="container">
+        <h2>Create Account</h2>
+
+        <% if (typeof message !== 'undefined' && message) { %>
+  <div class="message <%= message.type %>"><%= message.text %></div>
+<% } %>
+
+
+        <form method="POST" action="/signup">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name" value="<%= typeof formData !== 'undefined' ? formData.fullname : '' %>">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email" value="<%= typeof formData !== 'undefined' ? formData.email : '' %>">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Create a password">
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
+
+            <button type="submit">Create Account</button>
+        </form>
+        <div class="link">
+            <p>Already have an account? <a href="/login">Log in here</a></p>
+        </div>
+    </div>
+</body>
+</html>

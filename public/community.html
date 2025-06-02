@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Education | TechShift</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+      .hero {
+        background: linear-gradient(to right, #e0f7fa, #ffffff);
+        padding: 60px 0;
+        text-align: center;
+      }
+      .section {
+        padding: 60px 0;
+      }
+      .card {
+        border: none;
+        transition: 0.3s ease;
+      }
+      .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      }
+      footer {
+        background-color: #343a40;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .location{
+  width: 100%;
+  margin: auto;
+  padding: 80px 0;
+}
+.location iframe{
+  width: 100%;
+}
+.contact-us{
+  width: 80%;
+  margin:auto;
+}
+.contact-col{
+  flex-basis: 48%;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.contact-col div .fas{
+  font-size: 28px;
+  color: #f44336;
+  margin: 10px;
+  margin-right: 30px
+}
+.contact-col div .far{
+  font-size: 28px;
+  color: #f44336;
+  margin: 10px;
+  margin-right: 30px
+}
+.contact-col div p{
+  padding: 0;
+}
+.contact-col div h5{
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: 400;
+}
+.contact-col input, .contact-col textarea{
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 17px;
+  outline: none;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand fw-bold text-black"
+          href="index.html"
+          style="font-size: 24px"
+        >
+          <img
+            src="images/logo.png"
+            alt="logo"
+            href="index.html"
+            class="me-2"
+            style="height: 60px"
+          />
+          TechShift
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          href="index.html"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end d-none d-lg-flex"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="education.html">Education</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="resourcesDropdown"
+                data-bs-toggle="dropdown"
+              >
+                Resources
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="resources.html"
+                    >Guides & Checklists</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="grief-support.html"
+                    >Grief Support Tools</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="legal-and-planning.html"
+                    >Legal & Planning Templates</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item" id="authLink">
+              <a class="nav-link text-primary" href="/login">Login</a>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div
+      class="offcanvas offcanvas-start text-white"
+      tabindex="-1"
+      id="mobileMenu"
+      style="background: linear-gradient(135deg, #2c3e50, #4ca1af)"
+    >
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title d-flex align-items-center">
+          <img
+            src="https://img.icons8.com/ios-filled/28/ffffff/lotus.png"
+            class="me-2"
+            alt="icon"
+          />
+          Menu
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+
+      <div class="offcanvas-body d-flex flex-column">
+        <a href="#" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >🏠 Home</a
+        >
+        <a href="#about" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >📘 About</a
+        >
+        <a href="#education" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >📖 Education</a
+        >
+        <a href="#quiz" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >📝 Take the Quiz</a
+        >
+        <a href="#resources" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >📂 Resources</a
+        >
+        <a href="#community" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >🤝 Community</a
+        >
+        <a href="#contact" class="text-white fw-semibold mb-3 fs-5 link-hover"
+          >📬 Contact</a
+        >
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Join the Community</h1>
+        <p class="lead">
+          Connect with people who share your concerns, questions, and
+          experiences. Participate in our discussion forums, storytelling
+          sessions, or support groups.
+        </p>
+      </div>
+    </section>
+
+    <!-- Community -->
+    <section id="community" class="section bg-white text-center">
+      <div class="container">
+        <h2 class="section-title">Join the Conversation</h2>
+        <p>
+          Connect with people who share your concerns, questions, and
+          experiences. Participate in our discussion forums, storytelling
+          sessions, or support groups.
+        </p>
+        <a href="#" class="btn btn-info mt-3">Visit the Community</a>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section bg-light text-center">
+      <div class="container">
+        <h2 class="mb-3">Ready to Take the Quiz?</h2>
+        <p>
+          Find out how death literate you are — and get a personalized report
+          with insights and next steps.
+        </p>
+          <a id="quizBtn" class="btn btn-outline-primary mt-3">Take the Quiz</a>
+      </div>
+    </section>
+
+<!-- Contact Us & Join TechShift Section -->
+<section class="section text-center">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <p>
+      Whether you're a healthcare professional, educator, or someone seeking clarity around death and dying — we're here for you.
+    </p>
+    <a href="mailto:info@techshift.org" class="btn btn-dark mb-5">Email Us</a>
+
+    <h2 class="section-title mt-5">Join TechShift</h2>
+    <p>
+      Be part of a growing movement to build death literacy and empower communities. Sign in to access personalized tools, or create a new account to get started.
+    </p>
+    <a href="/login" class="btn btn-outline-primary me-2">Sign In</a>
+    <a href="/signup" class="btn btn-primary">Sign Up</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4">
+  <div class="container">
+    <small>&copy; 2025 TechShift | Built with care and awareness.</small>
+    <p class="mt-2 mb-0">Greater understanding. Deeper compassion. Stronger support</p>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
+ <script>
+    let isUserLoggedIn = false;
+
+    fetch('/api/user', { credentials: 'include' })
+      .then(res => res.json())
+      .then(data => {
+        const authLink = document.getElementById('authLink')?.querySelector('a');
+        isUserLoggedIn = data.loggedIn;
+
+        if (isUserLoggedIn) {
+          if (authLink) {
+            authLink.textContent = 'Logout';
+            authLink.href = '/logout';
+            authLink.classList.remove('text-primary');
+            authLink.classList.add('text-danger');
+          }
+
+          const quizBtn = document.getElementById('quizBtn');
+          if (quizBtn) {
+            quizBtn.href = '/quiz';
+          }
+
+        } else {
+          if (authLink) {
+            authLink.textContent = 'Login';
+            authLink.href = '/login';
+            authLink.classList.add('text-primary');
+            authLink.classList.remove('text-danger');
+          }
+
+          const quizBtn = document.getElementById('quizBtn');
+          if (quizBtn) {
+            quizBtn.href = '#';
+            quizBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              alert('Please log in to take the quiz.');
+              window.location.href = '/login';
+            });
+          }
+        }
+      })
+      .catch(err => {
+        console.error('Login check failed:', err);
+      });
+  </script>
+  
+  </body>
+</html>

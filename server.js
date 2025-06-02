@@ -46,12 +46,13 @@ function checkAuth(req, res, next) {
 }
 
 // ✅ Serve homepage
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+  app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
   
+
+
 // 🧠 Protected Quiz route
 app.get('/quiz', checkAuth, (req, res) => {
   const quizPath = path.join(__dirname, 'public', 'quiz.html');

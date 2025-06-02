@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// 🔐 Middleware to protect routes
+// Middleware to protect routes
 function checkAuth(req, res, next) {
   if (req.session && req.session.user) {
     next();
@@ -45,12 +45,12 @@ function checkAuth(req, res, next) {
   }
 }
 
-// ✅ Serve homepage
+// Serve homepage
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// 🧠 Protected Quiz route
+// Protected Quiz route
 app.get('/quiz', checkAuth, (req, res) => {
   const quizPath = path.join(__dirname, 'public', 'quiz.html');
   fs.readFile(quizPath, 'utf8', (err, data) => {
@@ -135,7 +135,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-// 📊 API to receive quiz scores
+// API to receive quiz scores
 app.post('/save-scores', async (req, res) => {
   const answers = req.body;
   console.log('Received quiz answers:', answers);

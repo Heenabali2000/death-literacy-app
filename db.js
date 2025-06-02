@@ -8,13 +8,4 @@ const pool = new Pool({
   }
 });
 
-pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('❌ Error acquiring client', err.stack);
-  }
-  console.log('✅ Connected to PostgreSQL database successfully!');
-  release();
-});
-
 module.exports = pool;
-

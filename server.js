@@ -136,10 +136,9 @@ app.get('/logout', (req, res) => {
 });
 
 // API to receive quiz scores
-app.post('/save-scores', async (req, res) => {
-  const answers = req.body;
-  console.log('Received quiz answers:', answers);
-  res.json({ message: 'Answers received successfully!' });
+app.post('/save-scores', express.json(), (req, res) => {
+  console.log("✅ Received quiz scores:", req.body);
+  res.json({ message: "Scores saved successfully!" });
 });
 
 // Start Server

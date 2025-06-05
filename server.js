@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 10000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+const saveScoreRoute = require('./routes/saveScore');
+app.use('/', saveScoreRoute);
 app.use(session({
   secret: "your_secret_key",
   resave: false,

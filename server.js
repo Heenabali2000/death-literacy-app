@@ -1,147 +1,133 @@
-// server.js
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const flash = require('connect-flash');
-const bcrypt = require('bcrypt');
-const path = require('path');
-const fs = require('fs');
-const pool = require('./db');
+const express = require("express");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const path = require("path");
+const bcrypt = require("bcrypt");
+const pool = require("./db");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
-
-app.set('view engine', 'ejs');
-
-// Session and flash config
 app.use(session({
-  secret: 'secret-key',
+  secret: "your_secret_key",
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true
 }));
-app.use(flash());
 
-// Flash message locals
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
+
+// Existing middleware
+app.use(session({
+  secret: "your_secret_key",
+  resave: false,
+  saveUninitialized: true
+}));
+
+// ✅ Add this to make `user` available in EJS templates
 app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success');
-  res.locals.error_msg = req.flash('error');
   res.locals.user = req.session.user;
   next();
 });
 
-// Middleware to protect routes
-function checkAuth(req, res, next) {
-  if (req.session && req.session.user) {
-    next();
-  } else {
-    req.flash('error', 'You must be logged in to access the quiz.');
-    res.redirect('/login');
-  }
-}
 
-// Serve homepage
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// Home Page
+app.get("/", (req, res) => {
+  res.render("index", { user: req.session.user });
 });
 
-// Protected Quiz route
-app.get('/quiz', checkAuth, (req, res) => {
-  const quizPath = path.join(__dirname, 'public', 'quiz.html');
-  fs.readFile(quizPath, 'utf8', (err, data) => {
-    if (err) return res.status(500).send('Quiz could not be loaded.');
-    res.send(data);
-  });
+// Login Page
+app.get("/login", (req, res) => {
+  res.render("login", { error_msg: "", formData: {} });
 });
 
-// Auth Routes
-app.get('/signup', (req, res) => {
-  res.render('signup', { message: null });
-});
-
-app.get('/login', (req, res) => {
-  res.render('login', { message: null });
-});
-
-app.get('/api/user', (req, res) => {
-  if (req.session.user) {
-    res.json({ loggedIn: true, user: req.session.user });
-  } else {
-    res.json({ loggedIn: false });
-  }
-});
-
-app.post('/signup', async (req, res) => {
-  const { fullname, email, password, confirm_password } = req.body;
-  if (password !== confirm_password) {
-    req.flash('error', 'Passwords do not match');
-    return res.redirect('/signup');
-  }
-  try {
-    const existingUser = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (existingUser.rows.length > 0) {
-      req.flash('error', 'Email already exists');
-      return res.redirect('/signup');
-    }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await pool.query('INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3)', [fullname, email, hashedPassword]);
-    req.flash('success', 'Signup successful! Please log in.');
-    res.redirect('/login');
-  } catch (err) {
-    console.error('Signup error:', err);
-    req.flash('error', 'Signup failed. Try again.');
-    res.redirect('/signup');
-  }
-});
-
-app.post('/login', async (req, res) => {
+app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (result.rows.length === 0) {
-      req.flash('error', 'Invalid email or password');
-      return res.redirect('/login');
+    const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
+        req.session.userId = user.id;
+        req.session.user = user;
+        return res.redirect("/quiz");
+      }
     }
-    const user = result.rows[0];
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (passwordMatch) {
-      req.session.user = { id: user.id, email: user.email, fullname: user.fullname };
-      req.flash('success', 'Login successful!');
-      return res.redirect('/quiz');
-    } else {
-      req.flash('error', 'Invalid email or password');
-      return res.redirect('/login');
-    }
-  } catch (error) {
-    console.error('Login error:', error);
-    req.flash('error', 'Login failed. Try again.');
-    res.redirect('/login');
+    if (match) {
+  req.session.userId = user.id;
+
+  // ✅ Add this to store user info
+  req.session.user = {
+    id: user.id,
+    firstname: user.firstname,
+    email: user.email
+  };
+
+  return res.redirect("/quiz");
+}
+
+    res.render("login", { error_msg: "Invalid email or password", formData: req.body });
+  } catch (err) {
+    console.error(err);
+    res.render("login", { error_msg: "An error occurred", formData: req.body });
   }
 });
 
-app.get('/logout', (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      console.error('Logout error:', err);
-      return res.redirect('/');
+// Signup Page
+app.post('/signup', async (req, res) => {
+  const { firstname, lastname, email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  
+  try {
+    await pool.query(
+      'INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)',
+      [firstname, lastname, email, hashedPassword]
+    );
+    res.redirect('/login'); // or wherever you want
+  } catch (err) {
+    console.error(err);
+    res.send("Error during signup");
+  }
+});
+
+// Forgot Password
+app.get("/forgot-password", (req, res) => {
+  res.render("forgot-password", { message: "" });
+});
+
+app.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    if (result.rows.length > 0) {
+      res.render("forgot-password", { message: "Password reset link sent to your email." });
+    } else {
+      res.render("forgot-password", { message: "Email not found." });
     }
-    res.clearCookie('connect.sid');
-    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.render("forgot-password", { message: "An error occurred." });
+  }
+});
+
+// Quiz Page (protected)
+app.get("/quiz", (req, res) => {
+  if (!req.session.userId) return res.redirect("/login");
+  res.render("quiz", { user: req.session.user });
+});
+
+// Logout
+app.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/login");
   });
 });
 
-// API to receive quiz scores
-app.post('/save-scores', express.json(), (req, res) => {
-  console.log("✅ Received quiz scores:", req.body);
-  res.json({ message: "Scores saved successfully!" });
-});
 
-// Start Server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

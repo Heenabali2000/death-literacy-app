@@ -1,262 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TechShift</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="global.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <style>
-      .hero {
-        background: linear-gradient(to right, #dfe9f3, #ffffff);
-        padding: 80px 0;
-        text-align: center;
-      }
-      .section-title {
-        font-weight: bold;
-        margin-bottom: 1rem;
-      }
-      .section {
-        padding: 60px 0;
-      }
-    </style>
-  </head>
-  <body>
-    <!--Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
-    >
-      <div class="container">
-        <a
-          class="navbar-brand fw-bold text-black"
-          href="/"
-          style="font-size: 24px"
-        >
-          <img
-            src="images/logo.png"
-            alt="logo"
-            class="me-2"
-            style="height: 60px"
-          />
-          TechShift
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#mobileMenu"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechShift</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      color: #222;
+    }
 
-        <div
-          class="collapse navbar-collapse justify-content-end d-none d-lg-flex"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="education.html">Education</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="resourcesDropdown"
-                data-bs-toggle="dropdown"
-              >
-                Resources
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#resources"
-                    >Guides & Checklists</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Grief Support Tools</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"
-                    >Legal & Planning Templates</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="community.html">Community</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
+    .navbar {
+      background: linear-gradient(to right, #000000, #2c2c2c);
+    }
 
-           
-          </ul>
-        </div>
-      </div>
-    </nav>
+    .navbar-brand, .nav-link {
+      color: #ffffff !important;
+    }
 
-    <!-- Mobile Drawer Menu -->
-    <div
-      class="offcanvas offcanvas-start text-white"
-      tabindex="-1"
-      id="mobileMenu"
-      style="background: linear-gradient(135deg, #2c3e50, #4ca1af)"
-    >
-      <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title d-flex align-items-center">
-          <img
-            src="https://img.icons8.com/ios-filled/28/ffffff/lotus.png"
-            class="me-2"
-            alt="icon"
-          />
-          Menu
-        </h5>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-        ></button>
-      </div>
+    .nav-link:hover {
+      color: #b8b8b8 !important;
+    }
 
-      <div class="offcanvas-body d-flex flex-column">
-        <a href="#" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >🏠 Home</a
-        >
-        <a href="#about" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >📘 About</a
-        >
-        <a href="#education" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >📖 Education</a
-        >
-        <a href="#quiz" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >📝 Take the Quiz</a
-        >
-        <a href="#resources" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >📂 Resources</a
-        >
-        <a href="#community" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >🤝 Community</a
-        >
-        <a href="#contact" class="text-white fw-semibold mb-3 fs-5 link-hover"
-          >📬 Contact</a
-        >
+    .hero {
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .btn-custom {
+      background-color: #28a745;
+      border: none;
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-color: #218838;
+    }
+
+    .btn-outline-dark:hover {
+      background-color: #343a40;
+      color: white;
+    }
+
+    .auth-section {
+      background-color: #ffffff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .auth-section .btn {
+      margin: 0 10px;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">
+        <img src="/images/logo.jpg" alt="logo" class="me-2" style="height: 40px" />
+        TechShift
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quiz">Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1 class="display-4">Welcome to the TechShift</h1>
-        <p class="lead">
-          Empowering individuals and communities to face end-of-life topics with
-          knowledge, compassion, and grace.
-        </p>
-        <a href="/quiz" class="btn btn-primary">Take Quiz</a>
-        >
-      </div>
-    </section>
+  <!-- Hero -->
+  <header class="hero">
+    <div>
+      <h1>Welcome to TechShift</h1>
+      <p class="lead">Empowering communities with knowledge, compassion, and care.</p>
+      <a href="#quiz" class="btn btn-lg btn-custom mt-3">Start the Quiz</a>
+    </div>
+  </header>
 
-    <section id="about" class="section bg-white text-center">
-      <div class="container">
-        <h2 class="section-title">About Us</h2>
-        <p class="lead">
-          We help normalize conversations around death, dying, and grief. Our
-          tools and resources guide people in planning, supporting others, and
-          improving their understanding of end-of-life processes.
-        </p>
-        <p>
-          We believe everyone deserves to navigate mortality with clarity and
-          dignity. Join us in transforming fear and silence into empowerment and
-          preparedness.
-        </p>
-        <a href="about.html" class="btn btn-outline-primary mt-3">Learn More</a>
-      </div>
-    </section>
+  <!-- Login & Signup Section -->
+  <section class="auth-section">
+    <div class="container">
+      <h2 class="section-title">Get Started with TechShift</h2>
+      <p class="lead">Already have an account? Log in. New here? Sign up now.</p>
+      <a href="/login" class="btn btn-outline-primary">Login</a>
+      <a href="/signup" class="btn btn-primary">Sign Up</a>
+    </div>
+  </section>
 
-    <!-- Education -->
-    <section id="education" class="section text-center">
-      <div class="container">
-        <h2 class="section-title">Learn with Us</h2>
-        <p class="mb-4">
-          Browse articles, watch videos, and take mini-courses on practical and
-          emotional aspects of death literacy — from palliative care to funeral
-          planning and emotional resilience.
-        </p>
-        <a href="education.html" class="btn btn-primary"
-          >Browse Educational Resources</a
-        >
-      </div>
-    </section>
+  <!-- About -->
+  <section id="about" class="section text-center">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="lead">We help normalize conversations around death, dying, and grief through education and support.</p>
+      <a href="/about" class="btn btn-outline-dark mt-3">Learn More</a>
+    </div>
+  </section>
 
-    <!-- Quiz -->
-    <section id="quiz" class="section bg-white text-center">
-      <div class="container">
-        <h2 class="section-title">How Death Literate Are You?</h2>
-        <p>
-          Take our free, research-based quiz to assess your grace and knowledge
-          across key areas of death literacy.
-        </p>
-          <a href="/quiz" class="btn btn-primary">Take Quiz</a>
-      </div>
-    </section>
+  <!-- Education -->
+  <section id="education" class="section bg-light text-center">
+    <div class="container">
+      <h2 class="section-title">Education & Resources</h2>
+      <p class="lead">Access guides, videos, planning tools, and support materials.</p>
+      <a href="/education" class="btn btn-primary mt-3">Browse Resources</a>
+    </div>
+  </section>
 
-    <!-- Resources -->
-    <section id="resources" class="section text-center">
-      <div class="container">
-        <h2 class="section-title">Helpful Tools & Resources</h2>
-        <p>
-          Download templates for advance care planning, funeral checklists,
-          grief support tips, and more. Everything you need to feel more in
-          control and informed.
-        </p>
-        <a href="#" class="btn btn-outline-secondary mt-3">Access Resources</a>
-      </div>
-    </section>
+  <!-- Quiz -->
+  <section id="quiz" class="section text-center">
+    <div class="container">
+      <h2 class="section-title">How Death Literate Are You?</h2>
+      <p class="lead">Take our free quiz to assess your knowledge and awareness.</p>
+      <a href="/quiz" class="btn btn-success mt-3">Start the Quiz</a>
+    </div>
+  </section>
 
-    <!-- Community -->
-    <section id="community" class="section bg-white text-center">
-      <div class="container">
-        <h2 class="section-title">Join the Conversation</h2>
-        <p>
-          Connect with people who share your concerns, questions, and
-          experiences. Participate in our discussion forums, storytelling
-          sessions, or support groups.
-        </p>
-        <a href="#" class="btn btn-info mt-3">Visit the Community</a>
-      </div>
-    </section>
+  <!-- Community -->
+  <section id="community" class="section bg-light text-center">
+    <div class="container">
+      <h2 class="section-title">Join Our Community</h2>
+      <p class="lead">Share stories, get support, and grow with others.</p>
+      <a href="/signup" class="btn btn-outline-primary mt-3">Join Now</a>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section text-center">
-      <div class="container">
-        <h2 class="section-title">Contact Us</h2>
-        <p>Have questions or want to collaborate? Reach out anytime.</p>
-        <a href="contact.html" class="btn btn-outline-primary mt-3">Get in Touch</a>
-      </div>
-    </section>
+  <!-- Contact -->
+  <section id="contact" class="section text-center">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p>We're here to help. Reach out with any questions or support needs.</p>
+      <a href="mailto:info@techshiftdl.com" class="btn btn-dark mt-3">Email Us</a>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
-      <div class="container">
-        <small>&copy; 2025 TechShift. All rights reserved.</small>
-      </div>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 TechShift | Built with care and awareness.</p>
+      <p>Greater understanding. Deeper compassion. Stronger support.</p>
+    </div>
+  </footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
+
+
+
+

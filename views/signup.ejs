@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Sign Up - TechShift</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -42,13 +43,8 @@
       text-align: center;
     }
 
-    .logo {
-      width: 80px;
-      margin-bottom: 1em;
-    }
-
     h2 {
-      color: #7d857d;
+      color: #333;
       margin-bottom: 1em;
     }
 
@@ -73,7 +69,7 @@
     }
 
     button:hover {
-      background-color: #1f6e21;
+      background-color: #155c17;
     }
 
     .nav-links {
@@ -109,6 +105,7 @@
     <form method="POST" action="/signup">
       <input type="text" name="firstname" placeholder="First Name" value="<%= formData.firstname || '' %>" required>
       <input type="text" name="lastname" placeholder="Last Name" value="<%= formData.lastname || '' %>" required>
+      <input type="text" name="organization" placeholder="Organization" value="<%= formData.organization || '' %>">
       <input type="email" name="email" placeholder="Email" value="<%= formData.email || '' %>" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Sign Up</button>
@@ -120,5 +117,6 @@
   </div>
 </body>
 </html>
+
 
 
